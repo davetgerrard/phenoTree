@@ -45,5 +45,5 @@ CHR_BED_FILES=`find $BED_DIR -name $BASE.chr*.bed`
 for CHR_F in $CHR_BED_FILES; do
 	CHR_F_BASE=`basename $CHR_F '.bed'`
 	echo "qsub $QSUB_PARAMS -N $BASE perl $SCRIPT_DIR/countBedToRegBins.pl $CHR_F $GENOME_TABLE $BIN_SIZE $CHR_F_BASE.$BIN_SIZE.binCounts"
-
+	qsub $QSUB_PARAMS -N $CHR_F_BASE perl $SCRIPT_DIR/countBedToRegBins.pl $CHR_F $GENOME_TABLE $BIN_SIZE $CHR_F_BASE.$BIN_SIZE.binCounts
 done

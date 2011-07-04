@@ -16,7 +16,7 @@ SCRIPT_DIR="$TOP_DIR/scripts"
 
 FILES=`find $BED_DIR -name '*.bed.gz'`
 
-
+### TO DO: parallelize this section. it takes an hour or more in series. Need separate clean up or wait for final 'rm'
 
 for F in $FILES; do
 	BASE=`basename $F '.bed.gz'`
