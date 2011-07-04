@@ -1,1 +1,2 @@
 bash scripts/batchBinCounts.sh
+bigWigToBedGraph data/bigwig_files/BI.Adult_Liver.H3K27me3.3.bw data/bigwig_files/BI.Adult_Liver.H3K27me3.3.bedGraph

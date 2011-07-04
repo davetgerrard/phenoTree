@@ -14,6 +14,11 @@ wget -i sources.H3K4me3
 
 #folders for output were created 
 
+# bigWig (.bw) files were created using wigToBigWig
+batchCreateBws.sh -> createBwOnFiles.sh
 
 
 #bin counts were made using
+batchBinCounts.sh -> binCountOnFileBase.sh  -> GetBinsFromBed.pl
+# took 30 hours for chr11. 
+
