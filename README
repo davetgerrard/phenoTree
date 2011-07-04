@@ -1,0 +1,19 @@
+###################################################
+#
+#	Dave Gerrard, University of Manchester
+#	2011
+#
+###################################################
+
+## Epigenome
+
+
+#files were obtained using wget within the data directory
+wget -i sources.H3K4me3
+
+
+#folders for output were created 
+
+
+
+#bin counts were made using
