@@ -1,4 +1,12 @@
 #! /usr/bin/perl -w
+
+###################################################
+#
+#       Dave Gerrard, University of Manchester
+#       2011
+#
+###################################################
+
 #Get bins of N bp either side of a coordinate, e.g. TSS
 #Ian Donaldson Jan 2011
 # This Version to read start and end coordinates from a bed file and count (DG)
