@@ -8,17 +8,43 @@
 ## Epigenome
 
 
-#files were obtained using wget within the data directory
+#files were obtained using wget within the relevant data directory
 wget -i sources.H3K4me3
 
 
 #folders for output were created 
 
+
+####### Attempt 1: binCOunts from BigWig files.
 # bigWig (.bw) files were created using wigToBigWig
 batchCreateBws.sh -> createBwOnFiles.sh
-
-
 #bin counts were made using
 batchBinCounts.sh -> binCountOnFileBase.sh  -> GetBinsFromBed.pl
 # took 30 hours for chr11. 
+# NOT RECOMENDED:-
+	# slow. 
+	# inaccurate (fixed width wig files do not store co-ordinates of reads only bins)
+	# may be useful if need data from around specific points e.g. TSS
+
+###### Attempt 2: regular interval binCounts from Bed
+# starting .bed.gz files are much larger (~1.5Gb uncompressed)
+# beds must be sorted (beware +/- strands in bed files.)
+
+# download files as above
+
+# copy and uncompress
+# split to separate chroms and sort each
+batchSplitBedGzToBedByChr.sh -> splitBedOnChr.sh
+
+# run bincounting on each chrom
+batch... -> binCountRegFromBed.sh -> countBedToRegBins.pl
+
+# re-combine individual chrom results?
+
+
+
+## Comparing two sets of binCounts.
+
+#deseq?
+
 
