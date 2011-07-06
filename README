@@ -25,6 +25,7 @@ batchBinCounts.sh -> binCountOnFileBase.sh  -> GetBinsFromBed.pl
 	# slow. 
 	# inaccurate (fixed width wig files do not store co-ordinates of reads only bins)
 	# may be useful if need data from around specific points e.g. TSS
+	# perhaps use featureBits instead
 
 ###### Attempt 2: regular interval binCounts from Bed
 # starting .bed.gz files are much larger (~1.5Gb uncompressed)
@@ -37,7 +38,7 @@ batchBinCounts.sh -> binCountOnFileBase.sh  -> GetBinsFromBed.pl
 batchSplitBedGzToBedByChr.sh -> splitBedOnChr.sh
 
 # run bincounting on each chrom
-batch... -> binCountRegFromBed.sh -> countBedToRegBins.pl
+batchBinCountsRegFromBed.sh -> binCountRegFromBed.sh -> countBedToRegBins.pl
 
 # re-combine individual chrom results?
 

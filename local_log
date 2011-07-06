@@ -1,3 +1,6 @@
 bash scripts/batchBinCounts.sh
 bigWigToBedGraph data/bigwig_files/BI.Adult_Liver.H3K27me3.3.bw data/bigwig_files/BI.Adult_Liver.H3K27me3.3.bedGraph
 perl ../scripts/countBedToRegBins.pl GSM669624_UCSF-UBC.Fetal_Brain.H3K4me3.HuFNSC-T.chr11.bed ../data/genome_table.hg19 1000 testBinning11.out
+bash scripts/batchSplitBedGzToBedByChr.sh 
+bash scripts/binCountRegFromBed.sh data/bed_files/GSM621685_BI.Skeletal_Muscle.H3K4me3.62.bed.gz
+bash scripts/batchBinCountsRegFromBed.sh 
