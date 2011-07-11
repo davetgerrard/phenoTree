@@ -17,16 +17,18 @@
 # get args from call
 Args <- commandArgs(TRUE)
 
-if(length(Args) != 4)  { 
-	stop("Usage: bindGenomeBinCounts.R [dir] [pattern] [sample info] [output file]\n
+if(length(Args) != 3)  { 
+	stop("Usage: bindGenomeBinCounts.R [dir] [pattern] [output file]\n
 		Given a directory [dir], opens all binCount files matching [pattern] and 
 		binds their count values into one table. Writes to [output file]. All binCount
 		files must have identical feature locations. Form: chr	start	end	count
-		Information about each file must be provided in [sample info]
 	")
 	
 }
 
+workDir <- Args[1]
+filePattern <- Args[2]
+outputFile <- Args[3]
 
 
 
@@ -36,9 +38,9 @@ old.o <- options(scipen=999)           # need to disable scientific notation for
 ### pdx1 (pancreatic fate determination) is on chr13 (NOT chr11!)
 
 
-setwd("output/binCounts/")
+setwd(workDir)
 print(getwd())
-countFiles <- dir(pattern="binCounts", full.names=T)
+countFiles <- dir(pattern=filePattern, full.names=T)
 #chrom specific files have names like:-
 # GSM669625_UCSF-UBC.Fetal_Brain.H3K27me3.HuFNSC-T.chr11.1000.binCounts
 # but these are not perfectly structured. Cannot use strsplit()
@@ -47,8 +49,8 @@ countFiles <- dir(pattern="binCounts", full.names=T)
 #write.table(basename(countFiles),file="sampleNames.txt", quote=F, row.names=F, col.names=F)
 
 # I have made a file with sampleInfo for this test
-sampleInfo <- read.delim("sampleInfo.tab", header=T)
-sampleInfo$niceName <- paste(sampleInfo$hMark, sampleInfo$Tissue, sampleInfo$individual, sep=".")
+#sampleInfo <- read.delim("sampleInfo.tab", header=T)
+#sampleInfo$niceName <- paste(sampleInfo$hMark, sampleInfo$Tissue, sampleInfo$individual, sep=".")
 
 print(Args)
 #stopifnot(FALSE)
@@ -71,9 +73,9 @@ for (i in 1:length(countFiles))  {
 	allCounts[,basename(countFiles[i])] <- thisCount[,4]
 }
 
-names(allCounts)[4:19] <- sampleInfo$niceName
+#names(allCounts)[4:19] <- sampleInfo$niceName
 
-write.table(allCounts, file=Args[4], quote=F, sep="\t", row.names=F)
+write.table(allCounts, file=outputFile, quote=F, sep="\t", row.names=F)
 
 quit(save="no")
 

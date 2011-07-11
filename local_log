@@ -9,3 +9,8 @@ find output/binCounts/ -name '*.chr11.1000.binCounts' | xargs tar -rvf export/ch
 gzip export/chr11.100.bincounts.all.tar
 cat `find output/binCounts/GSM621645_BI.Stomach_Smooth_Muscle.H3K4me3.28 -name '*9.1000.binCounts'`	# concatenate output files. Note backticks.
 bash scripts/batchCatChromFilesInDir.sh 
+# for some unknown reason, a single chromosome from one sample failed in bin counting. Here I resubmit just the one and add to the summary for that chrom.
+perl scripts/countBedToRegBins.pl data/bed_files/byChrom/GSM537643_BI.Pancreatic_Islets.H3K4me3.pancreatic_islets_normal_3_27_09/GSM537643_BI.Pancreatic_Islets.H3K4me3.pancreatic_islets_normal_3_27_09.chr16.bed data/genome_table.hg19 1000 output/binCounts/GSM537643_BI.Pancreatic_Islets.H3K4me3.pancreatic_islets_normal_3_27_09/GSM537643_BI.Pancreatic_Islets.H3K4me3.pancreatic_islets_normal_3_27_09.chr16.1000.binCounts
+mv output/binCounts/temp.chr16.binCounts output/binCounts/GSM537643_BI.Pancreatic_Islets.H3K4me3.pancreatic_islets_normal_3_27_09.1000.binCounts
+bedSort output/binCounts/GSM537643_BI.Pancreatic_Islets.H3K4me3.pancreatic_islets_normal_3_27_09.1000.binCounts output/binCounts/GSM537643_BI.Pancreatic_Islets.H3K4me3.pancreatic_islets_normal_3_27_09.1000.binCounts
+Rscript scripts/bindGenomeBins.R output/binCounts/ 'binCounts' genomeCountsAllMarks.tab
