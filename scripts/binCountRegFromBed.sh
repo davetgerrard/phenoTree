@@ -25,7 +25,7 @@ BASE=`basename $F '.bed.gz'`
 
 # check the filename is appropriate for a directory name
 
-# make a directory for this file's operations
+# make a directory for this file's operations	### THIS SEEMS TO MAKE A BUNCH OF BAD DIRS. NOT SURE WHY. 
 #echo "mkdir $OUTPUT_DIR/$BASE"
 #mkdir $OUTPUT_DIR/$BASE
 # cd to that directory

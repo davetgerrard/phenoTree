@@ -8,6 +8,7 @@
 ###################################################
 
 FILES=`find data/bed_files -name '*.bed.gz'`
+#FILES=`find data/bed_files -name '*Adult_Liver*.bed.gz'`
 
 for F in $FILES; do
 

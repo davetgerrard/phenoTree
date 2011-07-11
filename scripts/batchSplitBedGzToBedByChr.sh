@@ -15,6 +15,7 @@ BED_DIR="$DATA_DIR/bed_files"
 SCRIPT_DIR="$TOP_DIR/scripts"
 
 FILES=`find $BED_DIR -name '*.bed.gz'`
+#FILES=`find $BED_DIR -name '*Adult_Liver*.bed.gz'`
 
 ### TO DO: parallelize this section. it takes an hour or more in series. Need separate clean up or wait for final 'rm'
 

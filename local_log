@@ -4,3 +4,8 @@ perl ../scripts/countBedToRegBins.pl GSM669624_UCSF-UBC.Fetal_Brain.H3K4me3.HuFN
 bash scripts/batchSplitBedGzToBedByChr.sh 
 bash scripts/binCountRegFromBed.sh data/bed_files/GSM621685_BI.Skeletal_Muscle.H3K4me3.62.bed.gz
 bash scripts/batchBinCountsRegFromBed.sh 
+mkdir export
+find output/binCounts/ -name '*.chr11.1000.binCounts' | xargs tar -rvf export/chr11.100.bincounts.all.tar
+gzip export/chr11.100.bincounts.all.tar
+cat `find output/binCounts/GSM621645_BI.Stomach_Smooth_Muscle.H3K4me3.28 -name '*9.1000.binCounts'`	# concatenate output files. Note backticks.
+bash scripts/batchCatChromFilesInDir.sh 
