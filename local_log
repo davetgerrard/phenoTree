@@ -13,4 +13,6 @@ bash scripts/batchCatChromFilesInDir.sh
 perl scripts/countBedToRegBins.pl data/bed_files/byChrom/GSM537643_BI.Pancreatic_Islets.H3K4me3.pancreatic_islets_normal_3_27_09/GSM537643_BI.Pancreatic_Islets.H3K4me3.pancreatic_islets_normal_3_27_09.chr16.bed data/genome_table.hg19 1000 output/binCounts/GSM537643_BI.Pancreatic_Islets.H3K4me3.pancreatic_islets_normal_3_27_09/GSM537643_BI.Pancreatic_Islets.H3K4me3.pancreatic_islets_normal_3_27_09.chr16.1000.binCounts
 mv output/binCounts/temp.chr16.binCounts output/binCounts/GSM537643_BI.Pancreatic_Islets.H3K4me3.pancreatic_islets_normal_3_27_09.1000.binCounts
 bedSort output/binCounts/GSM537643_BI.Pancreatic_Islets.H3K4me3.pancreatic_islets_normal_3_27_09.1000.binCounts output/binCounts/GSM537643_BI.Pancreatic_Islets.H3K4me3.pancreatic_islets_normal_3_27_09.1000.binCounts
+# the chr16 problem is resolved. Move onto to binding the bins and compressing for transfer.
 Rscript scripts/bindGenomeBins.R output/binCounts/ 'binCounts' genomeCountsAllMarks.tab
+bzip2 -k output/binCounts/genomeCountsAllMarks.tab

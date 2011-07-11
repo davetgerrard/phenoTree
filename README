@@ -36,13 +36,20 @@ batchBinCounts.sh -> binCountOnFileBase.sh  -> GetBinsFromBed.pl
 # copy and uncompress
 # split to separate chroms and sort each
 batchSplitBedGzToBedByChr.sh -> splitBedOnChr.sh
+# N.B. could use Kent: bedSplitOnChrom
+
 
 # run bincounting on each chrom
 batchBinCountsRegFromBed.sh -> binCountRegFromBed.sh -> countBedToRegBins.pl
 
 # re-combine individual chrom results?
+batchCatChromFilesInDir.sh -> catChromFilesInDir.sh
+
+# bind count results across samples
+bindGenomeBins.R
 
 
+#N.B. bedSort does not order chromosomes.
 
 ## Comparing two sets of binCounts.
 
