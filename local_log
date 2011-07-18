@@ -16,3 +16,5 @@ bedSort output/binCounts/GSM537643_BI.Pancreatic_Islets.H3K4me3.pancreatic_islet
 # the chr16 problem is resolved. Move onto to binding the bins and compressing for transfer.
 Rscript scripts/bindGenomeBins.R output/binCounts/ 'binCounts' genomeCountsAllMarks.tab
 bzip2 -k output/binCounts/genomeCountsAllMarks.tab
+#  Rscript scripts/createKappaFromGo.R data/go2prot.map data/kappaMatrix.tab  # didn't work.
+qsub -V -b y -cwd -q node.q -N kappaMatrix Rscript scripts/createKappaFromGo.R data/go2prot.map data/kappaMatrix.tab
