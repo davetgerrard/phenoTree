@@ -18,7 +18,7 @@
 Args <- commandArgs(TRUE)
 
 if(length(Args) != 2)  { 
-	stop("Usage: empR.R [GO map] [outFile]\n
+	stop("Usage: createKappaMatrix.R [GO map] [outFile]\n
 		Create kapppa matrix of annotation similarity based on GO map.
 	")
 	
@@ -72,15 +72,18 @@ fullTermList <- unique(as.character(unlist(prot2go)))
 
 	#### THIS IS SLOW! About 30 mins. have saved the table
 	kappaMatrix <-matrix(0,nrow=nrow(binaryGrid),ncol=nrow(binaryGrid),dimnames=list( row.names(binaryGrid), row.names(binaryGrid)))
-	for(i in 1:nrow(kappaMatrix))  {
-		for(j in 1:nrow(kappaMatrix)) {
+	for(i in 1:(nrow(kappaMatrix)-1))  {
+		for(j in (i+1):nrow(kappaMatrix)) {
 			contTable <- table(binaryGrid[i,],binaryGrid[j,])[c(2:1),c(2:1)]
-			kappaMatrix[i,j] <- as.numeric(davidKappaFromTable(contTable))
+			value <- as.numeric(davidKappaFromTable(contTable))
+			kappaMatrix[i,j] <- value
+			kappaMatrix[j,i] <- value	# symmetric. Unnecessary.
 		}
 	}
 
 
-	write.table(kappaMatrix, file="data/ubiAllProtsKappaMatrix.tab",quote=F,sep="\t")
+
+	write.table(kappaMatrix, file=outFileName,quote=F,sep="\t")
 
 
 

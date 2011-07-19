@@ -18,3 +18,6 @@ Rscript scripts/bindGenomeBins.R output/binCounts/ 'binCounts' genomeCountsAllMa
 bzip2 -k output/binCounts/genomeCountsAllMarks.tab
 #  Rscript scripts/createKappaFromGo.R data/go2prot.map data/kappaMatrix.tab  # didn't work.
 qsub -V -b y -cwd -q node.q -N kappaMatrix Rscript scripts/createKappaFromGo.R data/go2prot.map data/kappaMatrix.tab
+qsub -V -b y -cwd -q slow.q -N kappaMatrix Rscript scripts/createKappaFromGo.R data/go2prot.map data/kappaMatrix.tab
+qsub -V -b y -cwd -q slow.q -N kappa.2.Matrix Rscript scripts/createKappaFromGo.R data/go2prot.map data/kappaMatrix.2.tab
+qsub -V -b y -cwd -q fast.q -N kappa.3.Matrix Rscript scripts/createKappaFromGo.R data/go2prot.map data/kappaMatrix.3.tab
