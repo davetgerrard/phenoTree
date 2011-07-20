@@ -21,3 +21,7 @@ qsub -V -b y -cwd -q node.q -N kappaMatrix Rscript scripts/createKappaFromGo.R d
 qsub -V -b y -cwd -q slow.q -N kappaMatrix Rscript scripts/createKappaFromGo.R data/go2prot.map data/kappaMatrix.tab
 qsub -V -b y -cwd -q slow.q -N kappa.2.Matrix Rscript scripts/createKappaFromGo.R data/go2prot.map data/kappaMatrix.2.tab
 qsub -V -b y -cwd -q fast.q -N kappa.3.Matrix Rscript scripts/createKappaFromGo.R data/go2prot.map data/kappaMatrix.3.tab
+qsub -V -b y -cwd -q slow.q -N coverageBedTest 'coverageBed -a data/bed_files/GSM669624_UCSF-UBC.Fetal_Brain.H3K4me3.HuFNSC-T.bed -b data/testBins.bed > sandbox/coverageBed.test'
+awk '{print $1"\t"0"\t"$2}' data/genome_table.hg19 > data/genome_table.hg19.bed	# add zeroes to convert chrom lengths to bed file for use in bedcoverage.
+qsub -V -b y -cwd -q slow.q -N bedCoverageTest bash scripts/runCoverageBed.sh data/bed_files/test.bed 
+bash scripts/batchCoverageBed.sh 
